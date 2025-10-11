@@ -20,26 +20,54 @@
                     <li class="dropdown">
                         <a href="#">Categories <i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="dropdown-content">
-                            <li><a href="casual-attire.html">Casual Attire</a></li>
-                            <li><a href="formal-wear.html">Formal Wear</a></li>
+                            <li><a href="../street-wear/street-wear.html">Street Wear</a></li>
+                            <li><a href="#">Casual Wear</a></li>
                         </ul>
                     </li>
                     <li><a href="accessories.html">Accessories</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                </ul>
+                </ul> 
             </div>
 
             <div class="right">
-                <div class="buttons">
+                <div class="buttons desktop-buttons">
                     <a href="#"><button class="login">Log in</button></a>
                     <a href="#"><button class="signup">Sign up</button></a>
                 </div>
+                <!-- Burger for mobile -->
+                <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <div class="mobile-nav-inner">
+            <button class="mobile-close" id="mobileClose" aria-label="Close navigation">×</button>
+            <ul class="mobile-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="mobile-dropdown">
+                    <a href="#">Categories</a>
+                    <ul>
+                        <li><a href="casual-attire.html">Casual Attire</a></li>
+                        <li><a href="formal-wear.html">Formal Wear</a></li>
+                    </ul>
+                </li>
+                <li><a href="accessories.html">Accessories</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-cta"><a href="#" class="login">Log in</a></li>
+                <li class="mobile-cta"><a href="#" class="signup">Sign up</a></li>
+            </ul>
+        </div>
+    </div>
     <!-- HERO SECTION -->
     <section id="hero">
         
     </section>
 </body>
+<script src="casual-attire.js"></script>
 </html>

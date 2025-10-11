@@ -93,7 +93,8 @@ nav {
 .right {
     color: var(--text-primary);
     font-weight: 700;
-    font-size: 20px;
+    font-size: 50px;
+    font-family: var(--font-family);
 }
 
 .navigation ul {
