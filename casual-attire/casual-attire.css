@@ -230,11 +230,26 @@ nav {
 .login {
     background-color: var(--button-background);
     color: var(--text-secondary);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.login:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-secondary);
 }
 
 .signup {
     background-color: transparent;
     color: var(--text-primary);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.signup:hover {
+    background-color: var(--button-background);
+    color: var(--text-secondary);
 }
 
 .login, .signup {
@@ -334,6 +349,29 @@ nav {
 }
 .mobile-dropdown.open > a::after{ transform: rotate(-180deg); }
 .mobile-dropdown.open ul{ opacity:1; max-height:400px; }
+
+/* HERO SECTION */
+#hero {
+    height: auto;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.hero-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 30px 20px;
+    width: auto;
+}
+
+.hero-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
 
 /* Responsive breakpoints */
 @media (max-width: 900px){
