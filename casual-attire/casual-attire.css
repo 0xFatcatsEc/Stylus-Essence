@@ -359,7 +359,7 @@ nav {
 
 /* HERO SECTION */
 #hero {
-    height: 100vh; /* full viewport height so video covers it */
+    height: auto; /* full viewport height so video covers it */
     display: grid;
     place-items: center;
     overflow: hidden;
@@ -368,7 +368,7 @@ nav {
 }
 
 .hero-container {
-    height: 100%; /* fill the hero section */
+    height: 100vh; /* fill the hero section */
     display: grid;
     place-items: center;
     padding: 30px 20px;
@@ -456,6 +456,44 @@ nav {
 }
 
 /* Responsive  */
+
+@media (max-width: 1200px) {
+    .hero-header h1 {
+        font-size: 150px;
+    }
+}
+
+    .hero-header h2 {
+        font-size: 28px;
+    }
+
+    .login, .signup {
+        font-size: 17px;
+        padding: 5px 10px;
+    }
+
+    .image-container {
+        margin-top: 80px auto 60px auto;
+}
+
+@media (max-width: 1000px) {
+    .login, .signup {
+        font-size: 13px;
+        padding: 10px 8px;
+        width: 100%;
+    }
+
+    .right {
+        padding: 5px 10px;
+    }
+
+    .image-container {
+        margin: 100px auto 40px auto;
+        width: 100%;
+    }
+
+}
+
 @media (max-width: 900px){
     .center { 
         display:none; 
