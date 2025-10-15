@@ -1084,7 +1084,7 @@ form {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba(255,255,255,0.03); /* subtle inset */
+    background: rgba(255,255,255,0.03);
     padding: 12px 16px;
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.06);
@@ -1123,7 +1123,7 @@ form button {
 form button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    background: #2b2f33; /* slightly lighter than var(--button-background) */
+    background: #2b2f33;
 }
 
 /* FOOTER STYLES SECTION */
@@ -1290,13 +1290,30 @@ footer {
     font-family: var(--font-primary);
 }
 
-/* Footer responsive: stack columns on small screens */
 @media (max-width: 880px) {
-    .footer-container { grid-template-columns: 1fr; text-align: center; }
-    .footer-right, .footer-left, .footer-center { align-items: center; text-align: center; }
-    .footer-right { margin-top: 18px; }
-    .brand-moto-header-text h1 { font-size: 34px; }
-    .stylus-studio h3, .creative-stylus h3 { font-size: 22px; }
+    .footer-container { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+    }
+
+    .footer-right, 
+    .footer-left, 
+    .footer-center { 
+        align-items: center; 
+        text-align: center; 
+    }
+
+    .footer-right { 
+        margin-top: 18px; 
+    }
+
+    .brand-moto-header-text h1 { 
+        font-size: 34px; 
+    }
+
+    .stylus-studio h3, 
+    .creative-stylus h3 { font-size: 22px; 
+    }
 }
 
 /* Responsive tweaks */
@@ -1305,18 +1322,25 @@ footer {
         flex-direction: column;
         gap: 12px;
     }
-    .input-wrapper { margin-right: 0; width: 100%; padding: 10px 14px; }
-    .input { width: 100%; }
-    form button { width: 100%; justify-content: center; }
+    .input-wrapper { 
+        margin-right: 0; 
+        width: 100%; 
+        padding: 10px 14px; 
+    }
+    .input { 
+        width: 100%; 
+    }
+
+    form button { 
+        width: 100%; 
+        justify-content: center; 
+    }
 }
 
-
-/* Ensure the input wrapper uses the pill chrome while supporting an icon */
 .input-wrapper {
     position: relative;
     width: 100%;
     max-width: 420px;
-    /* allow the wrapper to shrink below its content without forcing overflow */
     flex: 1 1 70px;
     min-width: 0;
     box-sizing: border-box;
@@ -1334,15 +1358,14 @@ footer {
 
 .input-wrapper .input {
     width: 100%;
-    padding: 12px 14px 12px 50px; /* leave room for icon */
+    padding: 12px 14px 12px 50px;
     border: none;
     border-radius: 999px;
-    background: transparent; /* parent provides chrome */
+    background: transparent;
     color: var(--text-header);
     font-size: 16px;
     height: 52px;
     box-sizing: border-box;
-    /* important for flex children to be able to shrink on small viewports */
     min-width: 0;
     max-width: 100%;
 }
@@ -1356,7 +1379,6 @@ footer {
     font-weight: 700;
     cursor: pointer;
     height: 52px;
-    /* ensure content (icon + text) is vertically centered */
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -1517,7 +1539,6 @@ body {
     
     .left-video {
         flex-wrap: wrap;
-        /* justify-content: center; */
     }
 
     .about-video {
@@ -1534,7 +1555,36 @@ body {
 }
 
 @media (max-width: 680px) {
-    .input-wrapper, .forms-section button {
+
+    .hero-container h1 {
+        font-size: 100px;
+        -webkit-box-reflect: below -60px linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    }
+
+        .hero-header h2 {
+        font-size: 15px;
+    }
+
+    .img-men1 {
+        width: 50%;
+        height: auto;
+        position: absolute;
+        right: -80px;
+    }
+    .img-women1 {
+        width: 50%;
+        position: absolute;
+        left: -80px;
+        height: auto;
+    }
+
+    .left-video {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .input-wrapper, 
+    .forms-section button {
         height: 64px;
     }
 
@@ -1564,4 +1614,117 @@ body {
         justify-content: center;
         align-items: center;
     }
+
+    .left-video h3 {
+        font-size: 50px;
+        margin-top: 10px;
+    }
+
+    .right-video h3 {
+        font-size: 50px;
+        margin-top: 10px;
+    }
+
+    .header-text-vid6 h3 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero-header h1 {
+        font-size: 80px;
+        -webkit-box-reflect: below -40px linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    }
+
+        .hero-header h2 {
+        font-size: 12px;
+    }
+
+    .about-header h1{
+        font-size: 50px;
+    }
+
+    .h4-1,
+    .h4-2,
+    .h4-3 {
+        font-size: 20px;
+        margin-top: 6px;
+        gap: 30px;
+    }
+
+    .about-video {
+        width: 80%;
+    }
+
+    .left-video h3 {
+        font-size: 40px;
+        margin-top: 6px;
+    }
+
+    .right-video h3 {
+        font-size: 40px;
+        margin-top: 6px;
+    }
+
+    .header-text-vid6 h3 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-header h1 {
+        font-size: 60px;
+        -webkit-box-reflect: below -30px linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    }
+
+        .hero-header h2 {
+        font-size: 10px;
+    }
+
+    .about-header h1{
+        font-size: 40px;
+    }
+
+    .h4-1,
+    .h4-2,
+    .h4-3 {
+        font-size: 18px;
+        margin-top: 4px;
+        gap: 20px;
+    }
+
+    .about-video {
+        width: 90%;
+    }
+
+    .left-video h3 {
+        font-size: 30px;
+        margin-top: 4px;
+    }
+
+    .right-video h3 {
+        font-size: 30px;
+        margin-top: 4px;
+    }
+
+    .header-text-vid6 h3 {
+        font-size: 25px;
+    }
+
+    .image-2 h2 {
+        font-size: 40px;
+    }
+    
+    .image-3 h2 {
+        font-size: 40px;
+    }
+    
+    .image-6 h2 {
+        font-size: 40px;
+    } 
+
+    .about-video {
+        width: 100%;
+    }
+
 }
