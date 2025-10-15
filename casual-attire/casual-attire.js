@@ -21,17 +21,14 @@ document.addEventListener('DOMContentLoaded', function(){
     burger && burger.addEventListener('click', openMenu);
     closeMobileMenu && closeMobileMenu.addEventListener('click', closeMenu);
 
-    // close when clicking outside inner panel
     mobileMenu && mobileMenu.addEventListener('click', function(e){
         if(e.target === mobileMenu) closeMenu();
     });
 
-    // close with Esc key
     document.addEventListener('keydown', function(e){
         if(e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) closeMenu();
     });
 
-    // Mobile sidebar dropdown toggles
     const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
     mobileDropdowns.forEach(dd =>{
         const toggle = dd.querySelector('.mobile-dropdown-toggle') || dd.querySelector('a');
@@ -41,18 +38,14 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     });
 
-    // If no animation classes present, auto-assign sensible defaults to common elements
     function autoAssignAnimations(){
-        // Hero
         const heroH1 = document.querySelector('.hero-header h1');
         const heroH2 = document.querySelector('.hero-header h2');
     if(heroH1){ heroH1.classList.add('animate','maangas-hero'); heroH1.style.setProperty('--delay','0ms'); }
     if(heroH2){ heroH2.classList.add('animate','maangas-swoop'); heroH2.style.setProperty('--delay','120ms'); }
 
-        // Top picks / image panels
         const imagePanels = Array.from(document.querySelectorAll('.image-panel, .image-panel img, .image-1, .image-2, .image-3, .image-4, .image-5, .image-6'));
         imagePanels.forEach((el, i) => {
-            // Prefer animating the image itself if present
             if(el.tagName === 'IMG' || el.querySelector && el.querySelector('img')){
                 const target = el.tagName === 'IMG' ? el : el.querySelector('img');
                 target && target.classList.add('animate','maangas-pop');
@@ -63,27 +56,23 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         });
 
-        // Videos (animate + prepare for play/pause on scroll). Exclude background video so it remains persistent.
+
         const videos = Array.from(document.querySelectorAll('video:not(.background-video)'));
         videos.forEach((v, i) => {
-            // give videos a dramatic entrance
+
             v.classList.add('animate','maangas-swoop');
             v.style.setProperty('--delay', `${i * 120}ms`);
-            // ensure muted so autoplay policies allow play
+            
             try { v.muted = true; } catch(e) {}
         });
 
-        // About header
+
         const aboutH = document.querySelector('.about-header h1');
         if(aboutH){ aboutH.classList.add('animate','fade-up'); aboutH.style.setProperty('--delay','60ms'); }
 
-        // Video-container elements will be prepared by applyFadeHeadings further below
-
-        // Updates/subscribe header
         const updates = document.querySelectorAll('.updates-header, .updates-header h2, .updates-header p');
     updates.forEach((el, i) => { el.classList.add('animate','maangas-pop'); el.style.setProperty('--delay', `${i * 80}ms`); });
 
-        // Footer columns
         const footers = document.querySelectorAll('.footer-left, .footer-center, .footer-right');
     footers.forEach((el, i) => { el.classList.add('animate','maangas-swoop'); el.style.setProperty('--delay', `${i * 120}ms`); });
 
@@ -139,13 +128,12 @@ document.addEventListener('DOMContentLoaded', function(){
     window.restoreTypewriter = restoreTypewriter;
 
     function applyFadeHeadings(selector, options = {}){
-        // ensure any typewriter markup is reverted first
+
         if(window.restoreTypewriter) window.restoreTypewriter();
 
         const els = document.querySelectorAll(selector);
         els.forEach((el, i) => {
             if(!el) return;
-            // ensure plain readable text
             if(el.dataset && el.dataset.typewriterApplied) {
                 const label = el.getAttribute('aria-label') || el.textContent || '';
                 el.textContent = label;
@@ -154,14 +142,13 @@ document.addEventListener('DOMContentLoaded', function(){
             }
 
             el.classList.add('animate','fade-up');
-            // set an optional delay base and step via options: { base: 120, step: 80 }
+   
             const base = parseInt(options.base) || 0;
             const step = parseInt(options.step) || 80;
             el.style.setProperty('--delay', `${base + (i * step)}ms`);
             el.dataset.fadeHeading = '1';
         });
 
-        // observer toggles in-view so headings fade in and fade out
         const fadeEls = document.querySelectorAll('[data-fade-heading]');
         if(fadeEls.length){
             const fadeObserver = new IntersectionObserver((entries) => {
@@ -175,23 +162,18 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    // Replace the old typewriter usage with fade headings
     applyFadeHeadings('.hero-header h1, .hero-header h2, .about-header h1, .top-pick-header h1');
 
-    // Also apply fade to video-container headings/paragraphs
     applyFadeHeadings('.video-container h3, .video-container h4, .video-container p', { base: 120, step: 80 });
 
-    // Apply fade to top-picks captions (H2 under each image panel)
     applyFadeHeadings('.image-1 h2, .image-2 h2, .image-3 h2, .image-4 h2, .image-5 h2, .image-6 h2', { base: 140, step: 90 });
 
-    /* IntersectionObserver animations: look for elements with .animate and reveal them when visible */
     const animated = document.querySelectorAll('.animate, .stagger-parent');
     if(animated.length) {
         const animObserver = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     entry.target.classList.add('in-view');
-                    // don't unobserve videos here — let video observer handle playback
                     if(entry.target.tagName !== 'VIDEO') obs.unobserve(entry.target);
                 }
             });
@@ -199,7 +181,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
         animated.forEach(el => animObserver.observe(el));
 
-        // Video observer: play when at least half visible, pause when not
         const videoEls = Array.from(document.querySelectorAll('video:not(.background-video)'));
         if(videoEls.length) {
             const videoObserver = new IntersectionObserver((entries) => {

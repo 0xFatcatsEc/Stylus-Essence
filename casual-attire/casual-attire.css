@@ -826,15 +826,25 @@ nav {
     0 0 20px rgba(0, 0, 0, 0.1);
     /* width: 100%; */
     max-width: 600px;
+    /* 3D presentation: restore rotated card-like video panels */
+    -webkit-transform: perspective(1000px) rotateY(20deg);
     transform: perspective(1000px) rotateY(20deg);
+    -webkit-transform-origin: center;
     transform-origin: center;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
+    transition: transform 360ms cubic-bezier(.22,.9,.35,1), box-shadow 280ms ease;
+    will-change: transform;
 }
 
 .about-video:hover {
+    -webkit-transform: perspective(1000px) rotateY(0deg) scale(1.05);
     transform: perspective(1000px) rotateY(0deg) scale(1.05);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.28);
 }
 
 
