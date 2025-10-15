@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // close with Esc key
     document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
+        if(e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) closeMenu();
     });
 
     // Mobile sidebar dropdown toggles
@@ -40,4 +40,180 @@ document.addEventListener('DOMContentLoaded', function(){
             dd.classList.toggle('open');
         });
     });
+
+    // If no animation classes present, auto-assign sensible defaults to common elements
+    function autoAssignAnimations(){
+        // Hero
+        const heroH1 = document.querySelector('.hero-header h1');
+        const heroH2 = document.querySelector('.hero-header h2');
+    if(heroH1){ heroH1.classList.add('animate','maangas-hero'); heroH1.style.setProperty('--delay','0ms'); }
+    if(heroH2){ heroH2.classList.add('animate','maangas-swoop'); heroH2.style.setProperty('--delay','120ms'); }
+
+        // Top picks / image panels
+        const imagePanels = Array.from(document.querySelectorAll('.image-panel, .image-panel img, .image-1, .image-2, .image-3, .image-4, .image-5, .image-6'));
+        imagePanels.forEach((el, i) => {
+            // Prefer animating the image itself if present
+            if(el.tagName === 'IMG' || el.querySelector && el.querySelector('img')){
+                const target = el.tagName === 'IMG' ? el : el.querySelector('img');
+                target && target.classList.add('animate','maangas-pop');
+                target && target.style.setProperty('--delay', `${i * 90}ms`);
+            } else {
+                el.classList.add('animate','maangas-pop');
+                el.style.setProperty('--delay', `${i * 90}ms`);
+            }
+        });
+
+        // Videos (animate + prepare for play/pause on scroll). Exclude background video so it remains persistent.
+        const videos = Array.from(document.querySelectorAll('video:not(.background-video)'));
+        videos.forEach((v, i) => {
+            // give videos a dramatic entrance
+            v.classList.add('animate','maangas-swoop');
+            v.style.setProperty('--delay', `${i * 120}ms`);
+            // ensure muted so autoplay policies allow play
+            try { v.muted = true; } catch(e) {}
+        });
+
+        // About header
+        const aboutH = document.querySelector('.about-header h1');
+        if(aboutH){ aboutH.classList.add('animate','fade-up'); aboutH.style.setProperty('--delay','60ms'); }
+
+        // Video-container elements will be prepared by applyFadeHeadings further below
+
+        // Updates/subscribe header
+        const updates = document.querySelectorAll('.updates-header, .updates-header h2, .updates-header p');
+    updates.forEach((el, i) => { el.classList.add('animate','maangas-pop'); el.style.setProperty('--delay', `${i * 80}ms`); });
+
+        // Footer columns
+        const footers = document.querySelectorAll('.footer-left, .footer-center, .footer-right');
+    footers.forEach((el, i) => { el.classList.add('animate','maangas-swoop'); el.style.setProperty('--delay', `${i * 120}ms`); });
+
+    const ctas = document.querySelectorAll('.hero-button button, .view-collection, .explore, .subscribe-icon, .forms-section button');
+    ctas.forEach((btn, i) => { btn.classList.add('animate','maangas-pop'); btn.style.setProperty('--delay', `${i * 120}ms`); });
+    }
+
+    autoAssignAnimations();
+
+    function addReflectionClones() {
+        const supportsBoxReflect = CSS.supports('-webkit-box-reflect', 'below 0px linear-gradient(black, transparent)');
+        if (supportsBoxReflect) return; 
+
+        const selectors = [
+            '.hero-header h1',
+            '.hero-header h2',
+            '.about-header h1',
+            '.top-pick-header h1',
+            '.header-text-vid1 h3',
+            '.header-text-vid2 h3',
+            '.header-text-vid3 h3',
+            '.header-text-vid4 h3',
+            '.header-text-vid5 h3',
+            '.header-text-vid6 h3'
+        ];
+
+        selectors.forEach(sel => {
+            const el = document.querySelector(sel);
+            if (!el) return;
+            if (el.dataset.hasReflectClone) return;
+
+            const clone = el.cloneNode(true);
+            clone.classList.add('reflect-clone');
+            clone.removeAttribute('id');
+            clone.setAttribute('aria-hidden', 'true');
+            el.parentNode && el.parentNode.insertBefore(clone, el.nextSibling);
+            el.dataset.hasReflectClone = '1';
+        });
+    }
+    addReflectionClones();
+
+    function restoreTypewriter(){
+        const applied = document.querySelectorAll('[data-typewriter-applied]');
+        applied.forEach(el => {
+            try{
+                const label = el.getAttribute('aria-label') || el.textContent || '';
+                el.textContent = label;
+                delete el.dataset.typewriterApplied;
+                el.removeAttribute('aria-label');
+            } catch(e){}
+        });
+    }
+    window.restoreTypewriter = restoreTypewriter;
+
+    function applyFadeHeadings(selector, options = {}){
+        // ensure any typewriter markup is reverted first
+        if(window.restoreTypewriter) window.restoreTypewriter();
+
+        const els = document.querySelectorAll(selector);
+        els.forEach((el, i) => {
+            if(!el) return;
+            // ensure plain readable text
+            if(el.dataset && el.dataset.typewriterApplied) {
+                const label = el.getAttribute('aria-label') || el.textContent || '';
+                el.textContent = label;
+                delete el.dataset.typewriterApplied;
+                el.removeAttribute('aria-label');
+            }
+
+            el.classList.add('animate','fade-up');
+            // set an optional delay base and step via options: { base: 120, step: 80 }
+            const base = parseInt(options.base) || 0;
+            const step = parseInt(options.step) || 80;
+            el.style.setProperty('--delay', `${base + (i * step)}ms`);
+            el.dataset.fadeHeading = '1';
+        });
+
+        // observer toggles in-view so headings fade in and fade out
+        const fadeEls = document.querySelectorAll('[data-fade-heading]');
+        if(fadeEls.length){
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('in-view');
+                    else entry.target.classList.remove('in-view');
+                });
+            }, { threshold: 0.18 });
+
+            fadeEls.forEach(e => fadeObserver.observe(e));
+        }
+    }
+
+    // Replace the old typewriter usage with fade headings
+    applyFadeHeadings('.hero-header h1, .hero-header h2, .about-header h1, .top-pick-header h1');
+
+    // Also apply fade to video-container headings/paragraphs
+    applyFadeHeadings('.video-container h3, .video-container h4, .video-container p', { base: 120, step: 80 });
+
+    // Apply fade to top-picks captions (H2 under each image panel)
+    applyFadeHeadings('.image-1 h2, .image-2 h2, .image-3 h2, .image-4 h2, .image-5 h2, .image-6 h2', { base: 140, step: 90 });
+
+    /* IntersectionObserver animations: look for elements with .animate and reveal them when visible */
+    const animated = document.querySelectorAll('.animate, .stagger-parent');
+    if(animated.length) {
+        const animObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    // don't unobserve videos here — let video observer handle playback
+                    if(entry.target.tagName !== 'VIDEO') obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.18 });
+
+        animated.forEach(el => animObserver.observe(el));
+
+        // Video observer: play when at least half visible, pause when not
+        const videoEls = Array.from(document.querySelectorAll('video:not(.background-video)'));
+        if(videoEls.length) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const vid = entry.target;
+                    if(entry.intersectionRatio >= 0.5) {
+                        try { vid.play && vid.play().catch(()=>{}); } catch(e){}
+                    } else {
+                        try { vid.pause && vid.pause(); } catch(e){}
+                    }
+                });
+            }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+            videoEls.forEach(v => videoObserver.observe(v));
+        }
+    }
 });

@@ -108,6 +108,132 @@ body {
 
 @keyframes slideInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0);} }
 
+/* Animation utilities */
+.animate { opacity: 0; transform: translateY(18px); will-change: transform, opacity; }
+.animate.in-view { opacity: 1; transform: translateY(0); transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease; transition-delay: var(--delay, 0ms); }
+
+/* Specific presets */
+.fade-up { transform: translateY(18px); }
+.fade-up.in-view { transform: translateY(0); }
+
+.slide-left { transform: translateX(-26px) scale(.98); opacity: 0; }
+.slide-left.in-view { transform: translateX(0) scale(1); opacity: 1; transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease; transition-delay: var(--delay, 0ms); }
+
+.scale-in { transform: scale(.96); opacity: 0; }
+.scale-in.in-view { transform: scale(1); opacity: 1; transition: transform 650ms cubic-bezier(.2,.9,.2,1), opacity 650ms ease; transition-delay: var(--delay, 0ms); }
+
+.stagger-parent { --stagger-step: 80ms; }
+.stagger-parent .stagger-child { opacity: 0; transform: translateY(12px); }
+.stagger-parent.in-view .stagger-child { opacity:1; transform: translateY(0); transition: transform 600ms cubic-bezier(.2,.9,.2,1), opacity 600ms ease; }
+.stagger-parent.in-view .stagger-child:nth-child(n) { transition-delay: calc(var(--stagger-step) * (var(--i) + 0)); }
+
+/* helper to set animation delay via inline style: style="--delay:120ms" */
+
+/* --- 'Maangas' dramatic animations --- */
+@keyframes maangas-hero {
+    0% { opacity: 0; transform: translateY(30px) scale(0.96) skewY(2deg); filter: blur(6px); }
+    60% { opacity: 1; transform: translateY(-12px) scale(1.03) skewY(-1deg); filter: blur(0px); }
+    100% { opacity: 1; transform: translateY(0) scale(1) skewY(0); }
+}
+
+@keyframes maangas-pop {
+    0% { opacity: 0; transform: scale(.86) rotate(-2deg); }
+    60% { transform: scale(1.08) rotate(1deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes maangas-swoop {
+    0% { opacity: 0; transform: translateX(-60px) rotate(-6deg) scale(.95); }
+    60% { opacity: 1; transform: translateX(10px) rotate(2deg) scale(1.04); }
+    100% { transform: translateX(0) rotate(0) scale(1); }
+}
+
+.maangas-hero { opacity:0; transform-origin: center; }
+.maangas-hero.in-view { animation: maangas-hero 900ms cubic-bezier(.22,.9,.35,1) both; animation-delay: var(--delay, 0ms); }
+
+.maangas-pop { opacity:0; transform-origin: center; }
+.maangas-pop.in-view { animation: maangas-pop 680ms cubic-bezier(.22,.9,.35,1) both; animation-delay: var(--delay, 0ms); }
+
+.maangas-swoop { opacity:0; transform-origin: left center; }
+.maangas-swoop.in-view { animation: maangas-swoop 820ms cubic-bezier(.22,.9,.35,1) both; animation-delay: var(--delay, 0ms); }
+
+/* Typewriter blur effect for headings: characters reveal sequentially and deblur */
+/* Legacy typewriter helpers (kept for compatibility but neutralized). 
+   We no longer split headings into per-character spans because
+   cross-browser gradient clipping caused readability issues. */
+.typewriter {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
+    color: inherit !important;
+    background: none !important;
+}
+.about-header h1 .typewriter,
+.top-pick-header h1 .typewriter,
+.header-text-vid1 h3 .typewriter,
+.header-text-vid2 h3 .typewriter,
+.header-text-vid3 h3 .typewriter,
+.header-text-vid4 h3 .typewriter,
+.header-text-vid5 h3 .typewriter,
+.header-text-vid6 h3 .typewriter {
+    /* those headings use a gradient on the parent; inherit it and clip to text */
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* If any .char spans remain on the page, ensure they're visible and inherit color
+   rather than relying on background-clip. This prevents the 'blank rectangle' issue. */
+.typewriter .char {
+    display: inline-block;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    color: inherit !important;
+}
+
+/* Remove the per-char unblur keyframe (no longer used). Kept in history if needed. */
+
+/* Respect reduced motion settings */
+@media (prefers-reduced-motion: reduce) {
+    .typewriter .char,
+    .maangas-hero,
+    .maangas-pop,
+    .maangas-swoop {
+        animation-duration: 120ms !important;
+        transition-duration: 0 !important;
+        animation-iteration-count: 1 !important;
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+    }
+}
+
+/* Strong fallback: when we need to force visible text during animation, apply
+   .typewriter-active to the wrapper. This overrides background-clip / transparent fills. */
+.typewriter-active {
+    /* legacy override: ensure readable color if class accidentally applied */
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: initial !important;
+    background: none !important;
+    color: var(--text-header) !important;
+}
+.typewriter-active .char { color: var(--text-header) !important; }
+
+/* helper: set stagger using inline style: --char-delay: 120ms */
+.typewriter .char { animation-delay: var(--char-delay, 0ms); }
+
+/* Fade-in / Fade-out utility for headings replaced typewriter
+    Use .fade-up with .in-view to control visibility */
+.fade-up { transform: translateY(12px); opacity: 0; transition: transform 520ms cubic-bezier(.22,.9,.3,1), opacity 520ms ease; }
+.fade-up.in-view { transform: translateY(0); opacity: 1; }
+
+/* Small helper in case a fade should be more subtle */
+.fade-subtle { transform: translateY(6px); opacity: 0; transition: transform 420ms cubic-bezier(.22,.9,.3,1), opacity 420ms ease; }
+.fade-subtle.in-view { transform: translateY(0); opacity: 1; }
+
+
 
 nav {
     width: 100%;
@@ -476,6 +602,29 @@ nav {
     letter-spacing: -2%;
     position: relative;
     -webkit-box-reflect: below -120px linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+}
+
+/* Reflection clone fallback for non-WebKit browsers
+   We insert a mirrored clone (.reflect-clone) via JS when -webkit-box-reflect is not supported.
+   When WebKit supports box-reflect, we hide the clone to avoid duplicate visuals. */
+@supports not (-webkit-box-reflect: below 0px linear-gradient(black, transparent)) {
+    .reflect-clone {
+        display: block;
+        transform: scaleY(-1);
+        opacity: 0.35;
+        filter: blur(1px) saturate(0.9);
+        pointer-events: none;
+        margin-top: 8px;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.15), transparent);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.15), transparent);
+        color: inherit;
+        width: 100%;
+    }
+}
+
+/* Hide the clone in WebKit where -webkit-box-reflect is used to avoid duplication */
+@supports (-webkit-box-reflect: below 0px linear-gradient(black, transparent)) {
+    .reflect-clone { display: none; }
 }
 
 .hero-header h2 {
