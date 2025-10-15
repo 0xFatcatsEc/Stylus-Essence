@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const imagePanels = Array.from(document.querySelectorAll('.image-panel, .image-panel img, .image-1, .image-2, .image-3, .image-4, .image-5, .image-6'));
         imagePanels.forEach((el, i) => {
+            if(el.closest && el.closest('#top-picks')) return;
             if(el.tagName === 'IMG' || el.querySelector && el.querySelector('img')){
                 const target = el.tagName === 'IMG' ? el : el.querySelector('img');
                 target && target.classList.add('animate','maangas-pop');
@@ -197,4 +198,31 @@ document.addEventListener('DOMContentLoaded', function(){
             videoEls.forEach(v => videoObserver.observe(v));
         }
     }
+
+    function initTopPickScrollAnimations(){
+        const panels = Array.from(document.querySelectorAll('#top-picks .image-panel'));
+        if(!panels.length) return;
+
+        panels.forEach((panel, index) => {
+            panel.classList.add('scroll-panel');
+            panel.style.setProperty('--panel-delay', `${index * 110}ms`);
+
+            const img = panel.querySelector('img');
+            const heading = panel.querySelector('h2');
+            img && img.classList.add('scroll-panel-target');
+            heading && heading.classList.add('scroll-panel-target');
+        });
+
+        const panelObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if(!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -5%' });
+
+        panels.forEach(panel => panelObserver.observe(panel));
+    }
+
+    initTopPickScrollAnimations();
 });

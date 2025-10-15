@@ -93,74 +93,229 @@ body {
     padding: 20px 24px;
 }
 
-.mobile-menu-logo { color: var(--text-primary); font-weight:700; font-size: 20px; }
-.close-menu { font-size: 26px; color: var(--text-header); cursor: pointer; }
-.close-menu:hover { color: var(--text-primary); transform: rotate(90deg); }
+.mobile-menu-logo { 
+    color: var(--text-primary); 
+    font-weight:700; 
+    font-size: 20px; 
+}
 
-.mobile-menu-content { display:flex; flex-direction:column; align-items:center; gap:24px; margin-top: 50px; }
-.mobile-nav-links { display:flex; flex-direction:column; align-items:center; gap:18px; list-style:none; }
-.mobile-nav-links li { opacity: 0; transform: translateY(20px); animation: slideInUp 0.6s ease forwards; }
-.mobile-nav-links li a { color: var(--text-primary); text-decoration:none; font-size:20px; padding:8px 16px; border-radius:8px; display:block; }
-.mobile-nav-links li a:hover { color: var(--text-header); background: rgba(0,0,0,0.06); }
+.close-menu { 
+    font-size: 26px; 
+    color: var(--text-header); 
+    cursor: pointer; 
+}
 
-.mobile-menu-buttons { display:flex; gap:12px; margin-top: 12px; }
-.mobile-menu-buttons button { padding: 10px 14px; border-radius: 8px; background: transparent; color: var(--text-primary); border: 1px solid rgba(0,0,0,0.08); }
+.close-menu:hover { 
+    color: var(--text-primary); 
+    transform: rotate(90deg); 
+}
+
+.mobile-menu-content { 
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    gap:24px; 
+    margin-top: 50px; 
+}
+
+.mobile-nav-links { 
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    gap:18px; 
+    list-style:none; 
+}
+
+.mobile-nav-links li { 
+    opacity: 0; 
+    transform: translateY(20px); 
+    animation: slideInUp 0.6s ease forwards; 
+}
+
+.mobile-nav-links li a { 
+    color: var(--text-primary); 
+    text-decoration:none; 
+    font-size:20px; 
+    padding:8px 16px; 
+    border-radius:8px; 
+    display:block; 
+}
+
+.mobile-nav-links li a:hover { 
+    color: var(--text-header); 
+    background: rgba(0,0,0,0.06); 
+}
+
+.mobile-menu-buttons { 
+    display:flex; 
+    gap:12px; 
+    margin-top: 12px; 
+}
+
+.mobile-menu-buttons button { 
+    padding: 10px 14px; 
+    border-radius: 8px; 
+    background: transparent; 
+    color: var(--text-primary); 
+    border: 1px solid rgba(0,0,0,0.08); 
+}
 
 @keyframes slideInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0);} }
 
 /* Animation utilities */
-.animate { opacity: 0; transform: translateY(18px); will-change: transform, opacity; }
-.animate.in-view { opacity: 1; transform: translateY(0); transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease; transition-delay: var(--delay, 0ms); }
+.animate { 
+    opacity: 0; 
+    transform: translateY(18px); 
+    will-change: transform, opacity; 
+}
 
-/* Specific presets */
-.fade-up { transform: translateY(18px); }
-.fade-up.in-view { transform: translateY(0); }
+.animate.in-view { 
+    opacity: 1; 
+    transform: translateY(0); 
+    transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease; 
+    transition-delay: var(--delay, 0ms); 
+}
 
-.slide-left { transform: translateX(-26px) scale(.98); opacity: 0; }
-.slide-left.in-view { transform: translateX(0) scale(1); opacity: 1; transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease; transition-delay: var(--delay, 0ms); }
+.fade-up { 
+    transform: translateY(18px); 
+}
 
-.scale-in { transform: scale(.96); opacity: 0; }
-.scale-in.in-view { transform: scale(1); opacity: 1; transition: transform 650ms cubic-bezier(.2,.9,.2,1), opacity 650ms ease; transition-delay: var(--delay, 0ms); }
+.fade-up.in-view { 
+    transform: translateY(0); 
+}
 
-.stagger-parent { --stagger-step: 80ms; }
-.stagger-parent .stagger-child { opacity: 0; transform: translateY(12px); }
-.stagger-parent.in-view .stagger-child { opacity:1; transform: translateY(0); transition: transform 600ms cubic-bezier(.2,.9,.2,1), opacity 600ms ease; }
-.stagger-parent.in-view .stagger-child:nth-child(n) { transition-delay: calc(var(--stagger-step) * (var(--i) + 0)); }
+.slide-left { 
+    transform: translateX(-26px) scale(.98); 
+    opacity: 0; 
+}
 
-/* helper to set animation delay via inline style: style="--delay:120ms" */
+.slide-left.in-view { 
+    transform: translateX(0) scale(1); 
+    opacity: 1; transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease; 
+    transition-delay: var(--delay, 0ms); 
+}
 
-/* --- 'Maangas' dramatic animations --- */
+.scale-in { 
+    transform: scale(.96); 
+    opacity: 0; 
+}
+
+.scale-in.in-view { 
+    transform: scale(1); 
+    opacity: 1; 
+    transition: transform 650ms cubic-bezier(.2,.9,.2,1), opacity 650ms ease; 
+    transition-delay: var(--delay, 0ms); 
+}
+
+
+.stagger-parent { 
+    --stagger-step: 80ms; 
+}
+
+.stagger-parent .stagger-child { 
+    opacity: 0; 
+    transform: translateY(12px); 
+}
+
+.stagger-parent.in-view .stagger-child { 
+    opacity:1; 
+    transform: translateY(0); 
+    transition: transform 600ms cubic-bezier(.2,.9,.2,1), opacity 600ms ease; 
+}
+
+.stagger-parent.in-view .stagger-child:nth-child(n) { 
+    transition-delay: calc(var(--stagger-step) * (var(--i) + 0)); 
+}
+
 @keyframes maangas-hero {
-    0% { opacity: 0; transform: translateY(30px) scale(0.96) skewY(2deg); filter: blur(6px); }
-    60% { opacity: 1; transform: translateY(-12px) scale(1.03) skewY(-1deg); filter: blur(0px); }
-    100% { opacity: 1; transform: translateY(0) scale(1) skewY(0); }
+    0% { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.96) skewY(2deg); 
+        filter: blur(6px); 
+    }
+
+    60% { 
+        opacity: 1; 
+        transform: translateY(-12px) scale(1.03) skewY(-1deg); 
+        filter: blur(0px); 
+    }
+
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1) skewY(0); 
+    }
 }
 
 @keyframes maangas-pop {
-    0% { opacity: 0; transform: scale(.86) rotate(-2deg); }
-    60% { transform: scale(1.08) rotate(1deg); opacity: 1; }
-    100% { transform: scale(1) rotate(0); }
+    0% { 
+        opacity: 0; 
+        transform: scale(.86) rotate(-2deg); 
+    }
+
+    60% { 
+        transform: scale(1.08) rotate(1deg); opacity: 1; 
+    }
+
+    100% { 
+        transform: scale(1) rotate(0); 
+    }
 }
 
 @keyframes maangas-swoop {
-    0% { opacity: 0; transform: translateX(-60px) rotate(-6deg) scale(.95); }
-    60% { opacity: 1; transform: translateX(10px) rotate(2deg) scale(1.04); }
-    100% { transform: translateX(0) rotate(0) scale(1); }
+    0% { 
+        opacity: 0; 
+        transform: translateX(-60px) rotate(-6deg) scale(.95); 
+    }
+
+    60% { 
+        opacity: 1; 
+        transform: translateX(10px) rotate(2deg) scale(1.04); 
+    }
+
+    100% { 
+        transform: translateX(0) rotate(0) scale(1); 
+    }
 }
 
-.maangas-hero { opacity:0; transform-origin: center; }
-.maangas-hero.in-view { animation: maangas-hero 900ms cubic-bezier(.22,.9,.35,1) both; animation-delay: var(--delay, 0ms); }
+.maangas-hero { 
+    opacity:0; 
+    transform-origin: center; 
+}
 
-.maangas-pop { opacity:0; transform-origin: center; }
-.maangas-pop.in-view { animation: maangas-pop 680ms cubic-bezier(.22,.9,.35,1) both; animation-delay: var(--delay, 0ms); }
+.maangas-hero.in-view { 
+    animation: maangas-hero 900ms cubic-bezier(.22,.9,.35,1) both; 
+    animation-delay: var(--delay, 0ms); 
+}
 
-.maangas-swoop { opacity:0; transform-origin: left center; }
-.maangas-swoop.in-view { animation: maangas-swoop 820ms cubic-bezier(.22,.9,.35,1) both; animation-delay: var(--delay, 0ms); }
+.maangas-pop { 
+    opacity:0; 
+    transform-origin: center;
+}
 
-/* Typewriter blur effect for headings: characters reveal sequentially and deblur */
-/* Legacy typewriter helpers (kept for compatibility but neutralized). 
-   We no longer split headings into per-character spans because
-   cross-browser gradient clipping caused readability issues. */
+
+.maangas-pop.in-view img { 
+    animation: maangas-pop 680ms cubic-bezier(.22,.9,.35,1) both; 
+    animation-delay: var(--delay, 0ms); 
+    transition: all .5s ease;
+    transition: filter 0.5s ease, transform 0.5s ease !important;
+}
+
+.maangas-pop.in-view img:hover { 
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.28)); 
+    transform: scale(1.02);
+    transition: filter 0.5s ease, transform 0.5s ease !important;
+}
+
+.maangas-swoop { 
+    opacity:0; 
+    transform-origin: left center; 
+}
+
+.maangas-swoop.in-view { 
+    animation: maangas-swoop 820ms cubic-bezier(.22,.9,.35,1) both; 
+    animation-delay: var(--delay, 0ms); 
+}
+
 .typewriter {
     display: inline-block;
     white-space: nowrap;
@@ -176,14 +331,12 @@ body {
 .header-text-vid4 h3 .typewriter,
 .header-text-vid5 h3 .typewriter,
 .header-text-vid6 h3 .typewriter {
-    /* those headings use a gradient on the parent; inherit it and clip to text */
     background: inherit;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-/* If any .char spans remain on the page, ensure they're visible and inherit color
-   rather than relying on background-clip. This prevents the 'blank rectangle' issue. */
+
 .typewriter .char {
     display: inline-block;
     transform: none !important;
@@ -192,14 +345,13 @@ body {
     color: inherit !important;
 }
 
-/* Remove the per-char unblur keyframe (no longer used). Kept in history if needed. */
-
-/* Respect reduced motion settings */
 @media (prefers-reduced-motion: reduce) {
     .typewriter .char,
     .maangas-hero,
     .maangas-pop,
-    .maangas-swoop {
+    .maangas-swoop,
+    .scroll-panel,
+    .scroll-panel-target {
         animation-duration: 120ms !important;
         transition-duration: 0 !important;
         animation-iteration-count: 1 !important;
@@ -207,12 +359,14 @@ body {
         opacity: 1 !important;
         filter: none !important;
     }
+
+    .scroll-panel,
+    .scroll-panel-target {
+        transition-delay: 0ms !important;
+    }
 }
 
-/* Strong fallback: when we need to force visible text during animation, apply
-   .typewriter-active to the wrapper. This overrides background-clip / transparent fills. */
 .typewriter-active {
-    /* legacy override: ensure readable color if class accidentally applied */
     -webkit-background-clip: unset !important;
     background-clip: unset !important;
     -webkit-text-fill-color: initial !important;
@@ -221,15 +375,11 @@ body {
 }
 .typewriter-active .char { color: var(--text-header) !important; }
 
-/* helper: set stagger using inline style: --char-delay: 120ms */
 .typewriter .char { animation-delay: var(--char-delay, 0ms); }
 
-/* Fade-in / Fade-out utility for headings replaced typewriter
-    Use .fade-up with .in-view to control visibility */
 .fade-up { transform: translateY(12px); opacity: 0; transition: transform 520ms cubic-bezier(.22,.9,.3,1), opacity 520ms ease; }
 .fade-up.in-view { transform: translateY(0); opacity: 1; }
 
-/* Small helper in case a fade should be more subtle */
 .fade-subtle { transform: translateY(6px); opacity: 0; transition: transform 420ms cubic-bezier(.22,.9,.3,1), opacity 420ms ease; }
 .fade-subtle.in-view { transform: translateY(0); opacity: 1; }
 
@@ -505,18 +655,47 @@ nav {
 .mobile-links a{ text-decoration:none; color:var(--text-primary); font-size:18px; display:inline-block; }
 .mobile-links .mobile-cta a{ display:inline-block; padding:10px 16px; border-radius:12px; }
 
-/* Reveal animation for mobile links (stagger) */
-.mobile-nav.open .mobile-links li{ opacity:1; transform: translateX(0); transition: transform 300ms ease, opacity 300ms ease; }
-.mobile-nav.open .mobile-links li:nth-child(1){ transition-delay: 60ms; }
-.mobile-nav.open .mobile-links li:nth-child(2){ transition-delay: 120ms; }
-.mobile-nav.open .mobile-links li:nth-child(3){ transition-delay: 180ms; }
-.mobile-nav.open .mobile-links li:nth-child(4){ transition-delay: 240ms; }
-.mobile-nav.open .mobile-links li:nth-child(5){ transition-delay: 300ms; }
-.mobile-nav.open .mobile-links li:nth-child(6){ transition-delay: 360ms; }
-.mobile-nav.open .mobile-links li:nth-child(7){ transition-delay: 420ms; }
+.mobile-nav.open .mobile-links li{ 
+    opacity:1; 
+    transform: translateX(0); 
+    transition: transform 300ms ease, 
+    opacity 300ms ease; 
+}
+.mobile-nav.open .mobile-links li:nth-child(1){ 
+    transition-delay: 60ms; 
+}
 
-/* Mobile dropdown inside sidebar */
-.mobile-dropdown > a{ position:relative; display:flex; justify-content:space-between; align-items:center; }
+.mobile-nav.open .mobile-links li:nth-child(2){ 
+    transition-delay: 120ms; 
+}
+
+.mobile-nav.open .mobile-links li:nth-child(3){ 
+    transition-delay: 180ms; 
+}
+
+.mobile-nav.open .mobile-links li:nth-child(4){ 
+    transition-delay: 240ms; 
+}
+
+.mobile-nav.open .mobile-links li:nth-child(5){ 
+    transition-delay: 300ms; 
+}
+
+.mobile-nav.open .mobile-links li:nth-child(6){ 
+    transition-delay: 360ms; 
+}
+
+.mobile-nav.open .mobile-links li:nth-child(7){ 
+    transition-delay: 420ms; 
+}
+
+.mobile-dropdown > a{ 
+    position:relative; 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+}
+
 .mobile-dropdown > a::after{
     content: "▾";
     font-size:14px;
@@ -533,10 +712,14 @@ nav {
     transition: max-height 320ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease;
     opacity:0;
 }
-.mobile-dropdown.open > a::after{ transform: rotate(-180deg); }
-.mobile-dropdown.open ul{ opacity:1; max-height:400px; }
+.mobile-dropdown.open > a::after{ 
+    transform: rotate(-180deg); 
+}
 
-/* HERO SECTION */
+.mobile-dropdown.open ul{ 
+    opacity:1; max-height:400px; 
+}
+
 #hero {
     height: auto; /* full viewport height so video covers it */
     display: grid;
@@ -604,9 +787,6 @@ nav {
     -webkit-box-reflect: below -120px linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
 }
 
-/* Reflection clone fallback for non-WebKit browsers
-   We insert a mirrored clone (.reflect-clone) via JS when -webkit-box-reflect is not supported.
-   When WebKit supports box-reflect, we hide the clone to avoid duplicate visuals. */
 @supports not (-webkit-box-reflect: below 0px linear-gradient(black, transparent)) {
     .reflect-clone {
         display: block;
@@ -622,7 +802,6 @@ nav {
     }
 }
 
-/* Hide the clone in WebKit where -webkit-box-reflect is used to avoid duplication */
 @supports (-webkit-box-reflect: below 0px linear-gradient(black, transparent)) {
     .reflect-clone { display: none; }
 }
@@ -673,7 +852,7 @@ nav {
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     transition: transform .28s ease, box-shadow .28s ease;
-    background: #fff; /* subtle background so border shows on any page bg */
+    background: #fff; 
 }
 
 .img-item img:hover {
@@ -742,6 +921,7 @@ nav {
     flex-direction: column;
     gap: 20px;
     padding: 30px 40px;
+    perspective: 1000px;
 }
 
 .left-video, 
@@ -820,25 +1000,15 @@ nav {
 .about-video {
     width: 35%;
     border-radius: 10px;
-    /* box-shadow: var(--box-shadow); */
     box-shadow:
     -30px 30px 60px rgba(0, 0, 0, 0.3),
     0 0 20px rgba(0, 0, 0, 0.1);
-    /* width: 100%; */
-    max-width: 600px;
-    /* 3D presentation: restore rotated card-like video panels */
-    -webkit-transform: perspective(1000px) rotateY(20deg);
-    transform: perspective(1000px) rotateY(20deg);
-    -webkit-transform-origin: center;
-    transform-origin: center;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 8px;
+    max-width: 600px; 
+    box-shadow:
+        -30px 30px 60px rgba(0, 0, 0, 0.3), 
+        0 0 20px rgba(0, 0, 0, 0.1);   
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transition: transform 360ms cubic-bezier(.22,.9,.35,1), box-shadow 280ms ease;
-    will-change: transform;
 }
 
 .about-video:hover {
@@ -849,7 +1019,23 @@ nav {
 
 
 .rotate-video {
-    transform: perspective(1000px) rotateY(-20deg);
+    /* legacy helper: apply a subtle right-facing tilt when author used .rotate-video */
+    -webkit-transform: rotateY(25deg) rotateX(5deg) !important;
+    transform: rotateY(25deg) rotateX(5deg) !important;
+}
+
+/* Per-column default tilts: videos inside .left-video face slightly left, inside
+   .right-video face slightly right. Also provide utility classes to force a tilt. */
+.left-video .about-video,
+.about-video.tilt-left {
+    -webkit-transform: rotateY(-25deg) rotateX(5deg) !important;
+    transform: rotateY(-25deg) rotateX(5deg) !important;
+}
+
+.right-video .about-video,
+.about-video.tilt-right {
+    -webkit-transform: rotateY(25deg) rotateX(5deg) !important;
+    transform: rotateY(25deg) rotateX(5deg) !important;
 }
 
 .header-text-vid1 {
@@ -963,6 +1149,7 @@ nav {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .flex-down {
@@ -982,15 +1169,45 @@ nav {
     box-shadow: none;
     transition: transform .22s ease; 
 }
+
 .image-panel img {
     display: block;
     width: 260px;
     height: 320px; 
     object-fit: cover; 
     border-radius: 6px;
+    transition: all 0.5s ease; 
 }
-.image-panel:hover { 
-    transform: translateY(-6px); 
+
+.image-panel img:hover { 
+    transform: translateY(-6px);
+}
+
+.scroll-panel {
+    position: relative;
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+    transition: transform 680ms cubic-bezier(.22, .9, .3, 1), opacity 680ms ease;
+    transition-delay: var(--panel-delay, 0ms);
+    will-change: transform, opacity;
+}
+
+.scroll-panel.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.scroll-panel-target {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: transform 540ms cubic-bezier(.22, .9, .3, 1), opacity 540ms ease;
+    transition-delay: calc(var(--panel-delay, 0ms) + 120ms);
+    will-change: transform, opacity;
+}
+
+.scroll-panel.is-visible .scroll-panel-target {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .image-1 {
@@ -1081,7 +1298,7 @@ nav {
 .image-6 {
     position: relative; 
     padding: 15px; 
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease !important;
 }
 
 .image-1::after, 
@@ -1501,6 +1718,7 @@ footer {
     .footer-container { 
         grid-template-columns: 1fr; 
         text-align: center; 
+        flex-wrap: wrap;
     }
 
     .footer-right, 
@@ -1698,9 +1916,6 @@ body {
         max-width: 320px; 
     }
 
-    .flex-up, .flex-down { 
-        flex-direction: column; 
-    }
     .image-panel img { 
         width: 90%; 
         max-width: 360px; 
@@ -1758,6 +1973,10 @@ body {
     }
     .last-video {
         flex-wrap: wrap;
+    }
+
+        .flex-up, .flex-down { 
+        flex-direction: column;
     }
 }
 
