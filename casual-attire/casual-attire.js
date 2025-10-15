@@ -1,29 +1,29 @@
 document.addEventListener('DOMContentLoaded', function(){
     const burger = document.getElementById('burger');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileClose = document.getElementById('mobileClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
 
-    function openNav(){
-        mobileNav.classList.add('open');
-        mobileNav.setAttribute('aria-hidden','false');
+    function openMenu(){
+        mobileMenu.classList.add('active');
+        mobileMenu.setAttribute('aria-hidden','false');
         burger.classList.add('open');
         burger.setAttribute('aria-expanded','true');
         document.body.style.overflow = 'hidden';
     }
-    function closeNav(){
-        mobileNav.classList.remove('open');
-        mobileNav.setAttribute('aria-hidden','true');
+    function closeMenu(){
+        mobileMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden','true');
         burger.classList.remove('open');
         burger.setAttribute('aria-expanded','false');
         document.body.style.overflow = '';
     }
 
-    burger && burger.addEventListener('click', openNav);
-    mobileClose && mobileClose.addEventListener('click', closeNav);
+    burger && burger.addEventListener('click', openMenu);
+    closeMobileMenu && closeMobileMenu.addEventListener('click', closeMenu);
 
     // close when clicking outside inner panel
-    mobileNav && mobileNav.addEventListener('click', function(e){
-        if(e.target === mobileNav) closeNav();
+    mobileMenu && mobileMenu.addEventListener('click', function(e){
+        if(e.target === mobileMenu) closeMenu();
     });
 
     // close with Esc key
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function(){
     // Mobile sidebar dropdown toggles
     const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
     mobileDropdowns.forEach(dd =>{
-        const toggle = dd.querySelector('a');
-        toggle.addEventListener('click', function(e){
+        const toggle = dd.querySelector('.mobile-dropdown-toggle') || dd.querySelector('a');
+        toggle && toggle.addEventListener('click', function(e){
             e.preventDefault();
             dd.classList.toggle('open');
         });

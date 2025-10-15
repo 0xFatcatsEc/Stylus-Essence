@@ -61,6 +61,54 @@ body {
     font-family: var(--font-primary);
 }
 
+/* Mobile menu styles (from street-wear) */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    /* white translucent background */
+    background: rgba(255, 255, 255, 0.385);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mobile-menu.active { left: 0; }
+
+.mobile-menu-header {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+}
+
+.mobile-menu-logo { color: var(--text-primary); font-weight:700; font-size: 20px; }
+.close-menu { font-size: 26px; color: var(--text-header); cursor: pointer; }
+.close-menu:hover { color: var(--text-primary); transform: rotate(90deg); }
+
+.mobile-menu-content { display:flex; flex-direction:column; align-items:center; gap:24px; margin-top: 50px; }
+.mobile-nav-links { display:flex; flex-direction:column; align-items:center; gap:18px; list-style:none; }
+.mobile-nav-links li { opacity: 0; transform: translateY(20px); animation: slideInUp 0.6s ease forwards; }
+.mobile-nav-links li a { color: var(--text-primary); text-decoration:none; font-size:20px; padding:8px 16px; border-radius:8px; display:block; }
+.mobile-nav-links li a:hover { color: var(--text-header); background: rgba(0,0,0,0.06); }
+
+.mobile-menu-buttons { display:flex; gap:12px; margin-top: 12px; }
+.mobile-menu-buttons button { padding: 10px 14px; border-radius: 8px; background: transparent; color: var(--text-primary); border: 1px solid rgba(0,0,0,0.08); }
+
+@keyframes slideInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0);} }
+
+
 nav {
     width: 100%;
     height: 70px;
@@ -1583,13 +1631,9 @@ body {
         justify-content: center;
     }
 
-    .input-wrapper, 
+    .input-wrapper,
     .forms-section button {
         height: 64px;
-    }
-
-    .input-wrapper {
-        height: 10px;
     }
 
     form { 
@@ -1604,10 +1648,15 @@ body {
         padding-left: 48px; 
     }
 
-    .background-video { 
-        display: none !important; 
-    }
+    /* keep the background video visible at this breakpoint; hide only on very small devices */
 
+
+/* Very small devices: hide the background video to save bandwidth and avoid layout shifts */
+@media (max-width: 360px) {
+    .background-video {
+        display: none !important;
+    }
+}
     .footer-container {
         display: flex;
         flex-direction: column;

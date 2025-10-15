@@ -43,25 +43,32 @@
             </div>
         </div>
     </nav>
-    <!-- Mobile menu overlay -->
-    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
-        <div class="mobile-nav-inner">
-            <button class="mobile-close" id="mobileClose" aria-label="Close navigation">×</button>
-            <ul class="mobile-links">
+    <!-- Mobile Menu (street-wear style) -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">STYLUS</div>
+            <div class="close-menu" id="closeMobileMenu" aria-label="Close navigation">
+                <i class="fa-solid fa-times"></i>
+            </div>
+        </div>
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li class="mobile-dropdown">
-                    <a href="#">Categories</a>
-                    <ul>
+                    <a href="#" class="mobile-dropdown-toggle">Categories <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+                    <ul class="mobile-dropdown-content">
+                        <li><a href="../street-wear/street-wear.html">Street Wear</a></li>
                         <li><a href="casual-attire.html">Casual Attire</a></li>
-                        <li><a href="formal-wear.html">Formal Wear</a></li>
                     </ul>
                 </li>
                 <li><a href="accessories.html">Accessories</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li class="mobile-cta"><a href="#" class="login">Log in</a></li>
-                <li class="mobile-cta"><a href="#" class="signup">Sign up</a></li>
             </ul>
+            <div class="mobile-menu-buttons">
+                <button class="mobile-signup">Sign Up <i class="fa-solid fa-user-plus"></i></button>
+                <button class="mobile-login">Log In <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+            </div>
         </div>
     </div>
     <!-- HERO SECTION -->
