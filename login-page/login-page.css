@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/belinda');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    /* move the background into a pseudo element so we can blur it */
+    background-color: #1111118d;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.44), rgba(0,0,0,0.44)), url('../background-images/login-background.jpg');
+    background-position: center;
+    background-repeat: repeat;
+    filter: blur(5px);
+    transform: scale(1.06);
+    will-change: transform, filter;
+    pointer-events: none;
+    z-index: 0;
+}
+
+:root {
+    /* Main Colors */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8b8;
+    --text-muted: #cccccc;
+
+    /* FONT */
+
+    --font-primary: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --font-family: "Bebas Neue", sans-serif;
+    --amatic-font: "Amatic SC", sans-serif;
+    --satisfy-font: "Satisfy", cursive;
+    
+    /* Accent Colors */
+    --accent-white: #ffffff;
+    --accent-border: rgba(255, 255, 255, 0.2);
+    
+    /* Interactive States */
+    --hover-bg: rgba(255, 255, 255, 0.1);
+    --hover-text: #ffffff;
+}
+
+.login-container {
+    width: 500px;
+    max-width: 96%;
+    height: auto;
+    min-height: 560px;
+    padding: 18px 18px 22px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.567);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.exit-menu {
+        height: fit-content;
+        align-items: center;
+        display: flex;
+        justify-content: flex-end;
+        color: var(--accent-white);
+        border-bottom: 1px solid var(--accent-border);
+}
+
+.exit-icon {
+    width: 14px;
+    height: 14px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.exit-icon:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+.form-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin-top: 20px;
+}
+
+.form-header h2 {
+    font-family: var(--amatic-font);
+    font-size: 50px;
+    color: var(--accent-white);
+}
+
+.form {
+    padding: 36px 28px 40px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-row label {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-family: var(--font-primary);
+    margin-bottom: 6px;
+}
+
+.input-row input[type="text"],
+.input-row input[type="password"] {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--accent-border);
+    background: rgba(255,255,255,0.03);
+    color: var(--text-primary);
+    outline: none;
+    font-size: 15px;
+    transition: box-shadow 150ms ease, border-color 150ms ease, transform 120ms ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-row input:focus {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.38);
+}
+
+.input-aux {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.checkbox-label {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-family: var(--font-primary);
+}
+
+.forgot-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.btn-submit {
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    color: var(--accent-white);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 140ms ease, box-shadow 140ms ease, background 120ms ease;
+}
+
+.input-row .btn-submit { margin-top: 8px; }
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-left-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    font-size: 16px;
+}
+
+.input-with-icon input[type="text"] {
+    padding-left: 38px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-icon-btn {
+    position: absolute;
+    right: 8px;
+    background: transparent;
+    border: 0;
+    color: var(--text-secondary);
+    padding: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.input-icon-btn:focus {
+    outline: 2px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+}
+
+.input-with-icon input[type="password"] {
+    padding-left: 38px; 
+    padding-right: 44px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 520px) {
+    .login-container { width: 92%; height: auto; }
+    .form-header h2 { font-size: 36px; }
+}
+
+@media (max-width: 520px) {
+    /* remove min-height on small screens so the container adapts */
+    .login-container { min-height: 0; padding: 12px; }
+    .form { padding: 20px; }
+    .login-form { gap: 12px; }
+}
+
+@media (max-width: 360px) {
+    .input-aux { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+

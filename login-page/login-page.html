@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="login-container">
+        <div class="exit-menu">
+            <div class="exit-icon">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        <div class="form-header">
+            <h2>Welcome Back</h2>
+        </div>
+        <div class="form">
+            <form action="#" method="post" class="login-form" novalidate>
+                <div class="input-row">
+                    <label for="username">Email</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-envelope input-left-icon" aria-hidden="true"></i>
+                        <input type="text" id="username" name="username" required autocomplete="username" placeholder="Enter your email">
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-lock input-left-icon" aria-hidden="true"></i>
+                        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter your password">
+                        <button type="button" class="input-icon-btn" id="togglePassword" aria-label="Show password">
+                            <i class="fa-solid fa-eye" id="togglePasswordIcon" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="input-row input-aux">
+                    <label class="checkbox-label"><input type="checkbox" name="remember" id="remember"> Remember me</label>
+                    <a href="#" class="forgot-link">Forget?</a>
+                </div>
+
+                <div class="input-row">
+                    <button type="submit" class="btn-submit">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="login-page.js"></script>
+</body>
+</html>
