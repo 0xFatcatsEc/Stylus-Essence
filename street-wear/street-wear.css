@@ -238,6 +238,10 @@ nav {
     cursor: pointer;
 }
 
+.mobile-menu-buttons a {
+    text-decoration: none;
+}
+
 /* HERO-SECTION */
 
 #hero {
