@@ -299,16 +299,14 @@ body::before {
     .login-form { gap: 12px; }
 }
 
-/* Make help-center static and term-conditions more compact on smaller screens */
 @media (max-width: 480px) {
     .help-center {
-        position: static; /* flow with document */
+        position: static; 
         width: 100%;
         left: auto;
         right: auto;
         bottom: auto;
         padding: 12px 0 0;
-        /* preserve the divider but make it subtle on small screens */
         border-top: 1px solid rgba(255,255,255,0.08);
         margin-top: 12px;
     }

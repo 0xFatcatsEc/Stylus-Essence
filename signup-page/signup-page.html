@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Create Account</title>
+    <link rel="stylesheet" href="signup-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="signup-container">
+        <div class="exit-menu">
+            <div class="exit-icon"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+
+        <div class="brand">
+            <!-- <div class="brand-icon"><i class="fa-solid fa-user-plus"></i></div> -->
+            <h1>Create Account</h1>
+            <p class="subtitle">Join us today and get started</p>
+        </div>
+
+        <form class="signup-form" action="#" method="post" novalidate>
+            <div class="row two-col">
+                <div class="input-row">
+                    <label for="first-name">First Name</label>
+                    <input id="first-name" name="first-name" type="text" placeholder="Enter your first name">
+                </div>
+                <div class="input-row">
+                    <label for="last-name">Last Name</label>
+                    <input id="last-name" name="last-name" type="text" placeholder="Enter your last name">
+                </div>
+            </div>
+
+            <div class="input-row">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" placeholder="Choose a unique username">
+            </div>
+
+            <div class="input-row input-with-icon">
+                <label for="password">Password</label>
+                <div class="input-with-icon-wrapper">
+                    <input id="password" name="password" type="password" placeholder="Enter your password" aria-describedby="pwd-help pwd-strength">
+                    <button type="button" id="togglePassword" class="input-icon-btn" aria-label="Show password"><i id="togglePasswordIcon" class="fa-solid fa-eye"></i></button>
+                </div>
+                <div id="pwd-help" class="pwd-help">Use at least 8 characters, with uppercase, number & special symbol.</div>
+                <div id="pwd-strength" class="pwd-strength">Strength: <span id="pwd-strength-label">—</span></div>
+            </div>
+
+            <div class="row two-col">
+                <div class="input-row">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" type="tel" placeholder="+63 9123456789">
+                </div>
+                <div class="input-row">
+                    <label for="dob">Date of Birth</label>
+                    <div class="input-with-icon-wrapper">
+                        <input id="dob" name="dob" type="date">
+                        <span class="calendar-icon"><i class="fa-regular fa-calendar-days"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="">Select your country</option>
+                    <option>Philippines</option>
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Canada</option>
+                </select>
+            </div>
+
+            <div class="info-box" id="pwd-warning" aria-live="polite" hidden>
+                <p id="pwd-warning-text"><i class="fa-solid fa-circle-info"></i> Your password doesn't meet the minimum security requirements.</p>
+            </div>
+
+            <label class="checkbox-label small"><input type="checkbox" id="accept"> I accept the Terms & Conditions and Privacy Policy</label>
+
+            <button class="btn-primary" type="submit">Create an account</button>
+
+            <p class="already">Already have an account? <a href="#">Sign In</a></p>
+
+        </form>
+
+        <div class="help-center"><p>Not sure about your choice? Try the </p><a href="#">Help Center</a></div>
+    </div>
+
+    <script src="signup-page.js"></script>
+</body>
+</html>
