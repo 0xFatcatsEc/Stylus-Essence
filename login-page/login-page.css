@@ -70,7 +70,7 @@ body::before {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.567);
+    background: rgba(0, 0, 0, 0.341);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
@@ -95,7 +95,7 @@ body::before {
 }
 
 .exit-icon:hover {
-    background-color: red;
+    color: var(--text-muted);
     cursor: pointer;
 }
 
@@ -114,7 +114,7 @@ body::before {
 }
 
 .form {
-    padding: 36px 28px 40px;
+    padding: 36px 28px 72px; /* extra bottom padding so form content doesn't overlap help-center */
 }
 
 .login-form {
@@ -189,7 +189,9 @@ body::before {
     transition: transform 140ms ease, box-shadow 140ms ease, background 120ms ease;
 }
 
-.input-row .btn-submit { margin-top: 8px; }
+.input-row .btn-submit { 
+    margin-top: 8px; 
+}
 
 .btn-submit:hover {
     transform: translateY(-3px);
@@ -239,6 +241,49 @@ body::before {
     padding-right: 44px; 
     width: 100%;
     box-sizing: border-box;
+}
+
+.term-conditions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.term-conditions p {
+    font-family: var(--font-primary);
+    font-size: 10px;
+    margin-top: 10px;
+    color: var(--accent-white);
+}
+
+.term-conditions a {
+    color: violet;
+}
+
+.help-center {
+    width: calc(100% - 36px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+    margin: 0;
+    padding: 8px 0;
+    z-index: 2;
+    border-top: 1px solid var(--accent-border);
+}
+
+.help-center p {
+    font-family: var(--font-primary);
+    font-size: 10px;
+    color: var(--accent-white);
+}
+
+.help-center a {
+    color: violet;
 }
 
 /* RESPONSIVE STYLES */
