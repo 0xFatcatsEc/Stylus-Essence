@@ -352,5 +352,23 @@ body::before{
 	.info-box p{
         font-size:13px
     }
+
+    .help-center p{
+        font-size:12px
+    }
+
+    .help-center a{
+        font-size:12px
+    }
 }
 
+@media (max-width: 350px){
+
+    .help-center p{
+        font-size:10px
+    }
+
+    .help-center a{
+        font-size:10px
+    }
+}
