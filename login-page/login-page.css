@@ -299,6 +299,25 @@ body::before {
     .login-form { gap: 12px; }
 }
 
+/* Make help-center static and term-conditions more compact on smaller screens */
+@media (max-width: 480px) {
+    .help-center {
+        position: static; /* flow with document */
+        width: 100%;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        padding: 12px 0 0;
+        /* preserve the divider but make it subtle on small screens */
+        border-top: 1px solid rgba(255,255,255,0.08);
+        margin-top: 12px;
+    }
+
+    .help-center p { font-size: 12px; text-align: center; }
+
+    .term-conditions p { font-size: 11px; text-align: center; margin-top: 8px; }
+}
+
 @media (max-width: 360px) {
     .input-aux { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
