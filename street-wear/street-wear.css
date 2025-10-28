@@ -1357,7 +1357,9 @@ footer {
 
 .footer-container {
     display: grid;
-    grid-template-areas: "footer-left footer-center footer-right";
+    grid-template-areas: 
+    "footer-left footer-center footer-right"
+        "footer-last footer-last footer-last";
     gap: 10px;
     width: 90%;
     height: auto;
@@ -1389,6 +1391,7 @@ footer {
     align-items: flex-end;
     text-align: right;
 }
+
 
 .brand-moto-header-text h1 {
     font-family: var(--font-family);
@@ -1498,6 +1501,21 @@ footer {
     font-size: 12px;
     line-height: 1.6;
     font-family: var(--font-primary);
+}
+
+.devs {
+    margin-top: 5px;
+}
+
+.designer {
+    margin-top: 2px;
+}
+
+.dev-break {
+    width: 10%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
