@@ -1743,6 +1743,21 @@ body {
     opacity: 1;
 }
 
+.devs {
+    margin-top: 5px;
+}
+
+.designer {
+    margin-top: 2px;
+}
+
+.dev-break {
+    width: 10%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* Responsive  */
 
 @media (max-width: 1400px) {
